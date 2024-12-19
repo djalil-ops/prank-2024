@@ -91,8 +91,8 @@
     const flash = document.querySelector('.flash');
 
     let currentIndex = 0;
-    const imageDuration = 7000; // Durée de l'affichage des images en millisecondes
-    const totalDuration = 15000; // Durée totale du prank en millisecondes
+    const imageDuration = 7000 / images.length; // Temps ajusté pour que les images défilent en 7 secondes
+    const totalDuration = 7000; // Durée totale du prank en millisecondes
 
     function triggerGlitchEffect() {
       glitch.style.opacity = '1';
@@ -121,14 +121,8 @@
         currentImage.style.transform = `scale(${1 + Math.random() * 0.2}) rotate(${Math.random() * 20 - 10}deg)`;
         triggerGlitchEffect();
         triggerFlashEffect();
-        setTimeout(showNextImage, imageDuration / images.length); // Affichage rapide des images
+        setTimeout(showNextImage, imageDuration); // Affichage rapide des images
         currentIndex++;
-      } else {
-        // Une fois les images affichées, seulement les effets de glitch et flash
-        setInterval(() => {
-          triggerGlitchEffect();
-          triggerFlashEffect();
-        }, 100); // Répétition des effets de glitch et flash
       }
     }
 
@@ -159,17 +153,10 @@
     // Écran noir jusqu'au clic de l'utilisateur
     document.body.addEventListener('click', startFullScreenAndPrank);
 
-    // Fermer la page après 15 secondes en redirigeant
+    // Fermer la page après 7 secondes
     setTimeout(() => {
-      window.location.href = 'about:blank';  // Rediriger vers une page vide après 15 secondes
-    }, totalDuration); // 15 secondes
-
-    // Empêcher de quitter le navigateur pendant le prank
-    window.addEventListener('beforeunload', function (e) {
-      const confirmationMessage = 'Êtes-vous sûr de vouloir quitter ? Le prank est en cours !';
-      (e || window.event).returnValue = confirmationMessage;
-      return confirmationMessage;
-    });
+      window.location.href = 'about:blank';  // Rediriger vers une page vide après 7 secondes
+    }, totalDuration);
   </script>
 </body>
 </html>
