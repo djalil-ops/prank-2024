@@ -129,6 +129,11 @@
     function startPrank() {
       container.style.display = 'flex';
       showNextImage();
+
+      // Rediriger vers une page blanche après 7 secondes
+      setTimeout(() => {
+        window.location.href = 'about:blank';  // Rediriger vers une page vide après 7 secondes
+      }, totalDuration);
     }
 
     // Fonction pour activer le mode plein écran
@@ -152,11 +157,6 @@
 
     // Écran noir jusqu'au clic de l'utilisateur
     document.body.addEventListener('click', startFullScreenAndPrank);
-
-    // Rediriger vers une page blanche après 7 secondes
-    setTimeout(() => {
-      window.location.href = 'about:blank';  // Rediriger vers une page vide après 7 secondes
-    }, totalDuration);
   </script>
 </body>
 </html>
