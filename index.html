@@ -77,11 +77,11 @@
     <div class="flash"></div>
     <!-- Remplace ces URL avec tes propres images -->
     <img id="img1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQO_ZWPzXE2MtdbRIKPiNbxzIonXU5ZxfFdfA&s" alt="Scary Image 1">
-    <img id="img2" src="https://image.jeuxvideo.com/medias-md/169600/1696002944-6610-card.jpg" alt="Scary Image 2" alt="Scary Image 2">
+    <img id="img2" src="https://image.jeuxvideo.com/medias-md/169600/1696002944-6610-card.jpg" alt="Scary Image 2">
     <img id="img3" src="https://image.jeuxvideo.com/medias-md/169721/1697212506-5977-card.png" alt="Scary Image 3">
-    <img id="img4" src="URL_DE_TA_IMAGE_4" alt="Scary Image 4">
-    <img id="img5" src="URL_DE_TA_IMAGE_5" alt="Scary Image 5">
-    <img id="img6" src="URL_DE_TA_IMAGE_6" alt="Scary Image 6">
+    <img id="img4" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTAcBAL7OdnojC_zVa39Fnd-W2c9XxHrpBig&s" alt="Scary Image 4">
+    <img id="img5" src="https://www.letribunaldunet.fr/wp-content/uploads/2015/04/6JcvqDd.jpg" alt="Scary Image 5">
+    <img id="img6" src="https://img.freepik.com/photos-gratuite/silhouettes-mains-terrifiantes-studio_23-2150710107.jpg" alt="Scary Image 6">
   </div>
 
   <audio id="audio" loop>
@@ -101,14 +101,14 @@
       glitch.style.opacity = '1';
       setTimeout(() => {
         glitch.style.opacity = '0';
-      }, 100);  // Glitch plus rapide
+      }, 100);  // Glitch rapide
     }
 
     function triggerFlashEffect() {
       flash.style.opacity = '1';
       setTimeout(() => {
         flash.style.opacity = '0';
-      }, 50);  // Flash plus rapide
+      }, 50);  // Flash rapide
     }
 
     function showNextImage() {
@@ -151,19 +151,19 @@
       }
     }
 
-    // Simuler un clic pour activer le plein écran sans interaction de l'utilisateur
-    function simulateClick() {
-      goFullscreen(); // Tente de passer en plein écran
-      startPrank();    // Lance la simulation après avoir activé le plein écran
+    // Lancer le plein écran et le prank après un clic
+    function startFullScreenAndPrank() {
+      goFullscreen(); // Activer le plein écran
+      startPrank();   // Lancer la simulation de prank
     }
 
-    // Simulation du clic après un délai
-    setTimeout(simulateClick, 1000); // 1 seconde avant d'essayer de passer en plein écran
+    // Écran noir jusqu'au clic de l'utilisateur
+    document.body.addEventListener('click', startFullScreenAndPrank);
 
-    // Fermer la page après 6 secondes
+    // Fermer la page après 10 secondes
     setTimeout(() => {
       window.close();  // Cela tentera de fermer l'onglet
-    }, 6000); // 6 secondes
+    }, 10000); // 10 secondes
   </script>
 </body>
 </html>
