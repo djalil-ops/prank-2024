@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prank QR Code</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    #container {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    img {
+      max-width: 80%;
+      max-height: 80%;
+      display: none;
+      transform: scale(1) rotate(0deg);
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .glitch {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: black;
+      z-index: 100;
+      animation: glitch 0.1s infinite;
+      opacity: 0;
+    }
+
+    .flash {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: white;
+      opacity: 0;
+      z-index: 200;
+      animation: flash 0.05s linear infinite;
+    }
+
+    @keyframes glitch {
+      0% { transform: translate(0, 0); }
+      20% { transform: translate(15px, -15px); }
+      40% { transform: translate(-15px, 15px); }
+      60% { transform: translate(10px, -10px); }
+      80% { transform: translate(-10px, 10px); }
+      100% { transform: translate(0, 0); }
+    }
+
+    @keyframes flash {
+      0%, 100% { opacity: 0; }
+      30% { opacity: 0.7; }
+      50% { opacity: 1; }
+      70% { opacity: 0.7; }
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div class="glitch"></div>
+    <div class="flash"></div>
+    <img id="img1" src="https://i.pinimg.com/originals/33/2f/98/332f98624b82aee84d5ed6e6e2e987a2.jpg" alt="Scary Image 1">
+    <img id="img2" src="https://i.pinimg.com/originals/a4/8f/24/a48f24c9f7f1bc01a06f36e75e2f92f3.jpg" alt="Scary Image 2">
+    <img id="img3" src="https://i.pinimg.com/originals/a4/89/9e/a4899eb70792ee1604fa13c5e59e2b89.jpg" alt="Scary Image 3">
+    <!-- Images supplémentaires plus effrayantes -->
+    <img id="img4" src="https://i.pinimg.com/originals/ed/af/f4/edaff4b12c5cd56f33840867215f0349.jpg" alt="Scary Image 4">
+    <img id="img5" src="https://i.pinimg.com/originals/70/7f/04/707f04a6a63431369ec5c7743e96e694.jpg" alt="Scary Image 5">
+    <img id="img6" src="https://i.pinimg.com/originals/d5/5b/f4/d55bf4e5821a8c16f17933780b7e3705.jpg" alt="Scary Image 6">
+  </div>
+
+  <audio id="audio" loop>
+    <!-- Changez le lien vers un fichier audio valide -->
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const images = ["img1", "img2", "img3", "img4", "img5", "img6"];
+    const container = document.getElementById('container');
+    const audio = document.getElementById('audio');
+    const glitch = document.querySelector('.glitch');
+    const flash = document.querySelector('.flash');
+
+    let currentIndex = 0;
+
+    function triggerGlitchEffect() {
+      glitch.style.opacity = '1';
+      setTimeout(() => {
+        glitch.style.opacity = '0';
+      }, 100);  // Glitch plus rapide
+    }
+
+    function triggerFlashEffect() {
+      flash.style.opacity = '1';
+      setTimeout(() => {
+        flash.style.opacity = '0';
+      }, 50);  // Flash plus rapide
+    }
+
+    function showNextImage() {
+      if (currentIndex > 0) {
+        const prevImage = document.getElementById(images[currentIndex - 1]);
+        prevImage.style.display = 'none';
+        prevImage.style.transform = 'scale(1) rotate(0deg)';
+      }
+
+      if (currentIndex < images.length) {
+        const currentImage = document.getElementById(images[currentIndex]);
+        currentImage.style.display = 'block';
+        currentImage.style.transform = `scale(${1 + Math.random() * 0.2}) rotate(${Math.random() * 20 - 10}deg)`;
+        triggerGlitchEffect();
+        triggerFlashEffect();
+        setTimeout(showNextImage, 500); // Plus rapide pour l'effet
+        currentIndex++;
+      } else {
+        container.style.display = 'none';
+        audio.pause();
+      }
+    }
+
+    function startPrank() {
+      audio.play();
+      container.style.display = 'flex';
+      showNextImage();
+    }
+
+    // Fonction pour activer le mode plein écran
+    function goFullscreen() {
+      if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen();
+      } else if (document.documentElement.mozRequestFullScreen) { // Firefox
+        document.documentElement.mozRequestFullScreen();
+      } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari, Opera
+        document.documentElement.webkitRequestFullscreen();
+      } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
+        document.documentElement.msRequestFullscreen();
+      }
+    }
+
+    // Activer le plein écran après que la page soit chargée (avec un délai court de 200 ms)
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(goFullscreen, 200); // Délai de 200 ms
+    });
+
+    // Fermer la page après 10 secondes
+    setTimeout(() => {
+      window.close();  // Cela tentera de fermer l'onglet
+    }, 10000); // 10 secondes
+
+    // Start prank after a slight delay
+    setTimeout(startPrank, 3000);
+  </script>
+</body>
+</html>
