@@ -84,14 +84,9 @@
     <img id="img6" src="https://img.freepik.com/photos-gratuite/silhouettes-mains-terrifiantes-studio_23-2150710107.jpg" alt="Scary Image 6">
   </div>
 
-  <audio id="audio" loop>
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-  </audio>
-
   <script>
     const images = ["img1", "img2", "img3", "img4", "img5", "img6"];
     const container = document.getElementById('container');
-    const audio = document.getElementById('audio');
     const glitch = document.querySelector('.glitch');
     const flash = document.querySelector('.flash');
 
@@ -138,7 +133,6 @@
     }
 
     function startPrank() {
-      audio.play();
       container.style.display = 'flex';
       showNextImage();
     }
@@ -165,9 +159,9 @@
     // Écran noir jusqu'au clic de l'utilisateur
     document.body.addEventListener('click', startFullScreenAndPrank);
 
-    // Fermer la page après 15 secondes
+    // Fermer la page après 15 secondes en redirigeant
     setTimeout(() => {
-      window.close();  // Cela tentera de fermer l'onglet
+      window.location.href = 'about:blank';  // Rediriger vers une page vide après 15 secondes
     }, totalDuration); // 15 secondes
 
     // Empêcher de quitter le navigateur pendant le prank
