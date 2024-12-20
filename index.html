@@ -84,18 +84,28 @@
     <img id="img6" src="https://img.freepik.com/photos-gratuite/silhouettes-mains-terrifiantes-studio_23-2150710107.jpg" alt="Scary Image 6">
   </div>
 
+  <!-- Son glitch -->
+  <audio id="glitchSound" src="https://freesound.org/data/previews/331/331656_3248244-lq.mp3" preload="auto"></audio>
+
   <script>
     const images = ["img1", "img2", "img3", "img4", "img5", "img6"];
     const container = document.getElementById('container');
     const glitch = document.querySelector('.glitch');
     const flash = document.querySelector('.flash');
+    const glitchSound = document.getElementById('glitchSound');
 
     let currentIndex = 0;
     const imageDuration = 7000 / images.length; // Temps ajusté pour que les images défilent en 7 secondes
     const totalDuration = 7000; // Durée totale du prank en millisecondes
 
+    function playGlitchSound() {
+      glitchSound.currentTime = 0; // Rejoue le son depuis le début
+      glitchSound.play();
+    }
+
     function triggerGlitchEffect() {
       glitch.style.opacity = '1';
+      playGlitchSound(); // Joue le son du glitch
       setTimeout(() => {
         glitch.style.opacity = '0';
       }, 100);  // Glitch rapide
@@ -160,4 +170,3 @@
   </script>
 </body>
 </html>
- 
